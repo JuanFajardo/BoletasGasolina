@@ -18,3 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('/Proyecto', 'ProyectoController');
+Route::resource('/Boleta', 'BoletaController');
+Route::resource('/Cambio', 'CambioController');

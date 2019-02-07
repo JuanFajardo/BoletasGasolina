@@ -15,6 +15,13 @@ class CreateCambiosTable extends Migration
     {
         Schema::create('cambios', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('fecha');
+            $table->string('monto_antiguo');
+            $table->string('monto_nuevo');
+            $table->text('observacion');
+            $table->integer('id_user');
+            $table->integer('id_proyecto');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

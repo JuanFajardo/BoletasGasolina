@@ -25,6 +25,7 @@ class CreateBoletasTable extends Migration
             $table->text('observacion');
             $table->integer('id_user');
             $table->integer('id_proyecto');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

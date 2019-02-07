@@ -15,11 +15,14 @@ class CreateProyectosTable extends Migration
     {
         Schema::create('proyectos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('apertura');
+            $table->string('apertura');
             $table->string('actividad');
             $table->integer('distrito');
             $table->float('presupuesto', 10,2);
+            $table->float('gastado', 10,2);
+            $table->float('total', 10,2);
             $table->integer('id_user');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
