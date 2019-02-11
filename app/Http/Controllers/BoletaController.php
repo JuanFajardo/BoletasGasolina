@@ -9,7 +9,7 @@ class BoletaController extends Controller
 {
 
     public function __construct(){
-    //$this->middleware('auth');
+      $this->middleware('auth');
     }
 
     public function index(Request $request){
@@ -25,38 +25,38 @@ class BoletaController extends Controller
     }
 
     public function store(Request $request){
-      //  'id', 'boleta', 'fecha', 'tipo', 'litros', 'costo', 'monto', 'unidad', 'observacion', 'id_user', 'id_proyecto'
-      //return $request->all();
       $proyectos = explode("|", $request->id_proyecto);
+      $request["id_user"] = Auth::user()->id;
       $proyecto = Proyecto::Where('apertura', '=', trim($proyectos[0]) )->get();
       $id_proyecto = $proyecto[0]->id;
       $monto = 0;
 
-      if($request->tipo == "gasolina"){
+      if($request->tipo == "combustible"){
         $dato = new Boleta;
         $dato->boleta = $request->boleta;
-        $dato->fecha  = $request->fecha;
+        $dato->fecha  = date('Y-m-d', strtotime($request->fecha));
         $dato->tipo   = $request->tipo;
+        $dato->ffof   = $request->ffof;
         $dato->litros = $request->litros;
         $dato->costo  = $request->costo;
         $dato->monto  = $request->monto;
         $dato->unidad = $request->unidad;
         $dato->observacion  = $request->observacion;
-        $dato->id_user= '1'; //Auth::user()->id;
+        $dato->id_user= Auth::user()->id;
         $dato->id_proyecto  = $id_proyecto;
         $dato->save();
         $monto = $request->monto;
       }else{
         $dato = new Boleta;
         $dato->boleta = $request->boleta;
-        $dato->fecha  = $request->fecha;
+        $dato->fecha  = date('Y-m-d', strtotime($request->fecha));
         $dato->tipo   = $request->tipo;
         $dato->litros = "0";
         $dato->costo  = "0";
         $dato->monto  = $request->monto1;
         $dato->unidad = $request->unidad1;
         $dato->observacion  = $request->observacion;
-        $dato->id_user= '1'; //Auth::user()->id;
+        $dato->id_user= Auth::user()->id;
         $dato->id_proyecto  = $id_proyecto;
         $dato->save();
         $monto = $request->monto1;
@@ -69,6 +69,7 @@ class BoletaController extends Controller
       $proyecto = Proyecto::find($id_proyecto);
       $proyecto->gastado  = $gastado;
       $proyecto->total    = $total;
+      $proyecto->id_user  = Auth::user()->id;
       $proyecto->save();
       return redirect('/Boleta');
     }
@@ -81,7 +82,7 @@ class BoletaController extends Controller
     public function update(Request $request, $id){
       $dato = Boleta::find($id);
       $dato->boleta     = $request->boleta;
-      $dato->fecha      = $request->fecha;
+      $dato->fecha      = date('Y-m-d', strtotime($request->fecha));
       $dato->tipo       = $request->tipo;
       $dato->litros     = $request->litros;
       $dato->costo      = $request->costo;
@@ -89,7 +90,7 @@ class BoletaController extends Controller
       $dato->unidad     = $request->unidad;
       $dato->observacion= $request->observacion;
       $dato->id_proyecto= $request->id_proyecto;
-      $dato->id_user    = '1'; //Auth::user()->id;
+      $dato->id_user    = Auth::user()->id;
       $dato->save();
       return redirect('/Boleta');
     }

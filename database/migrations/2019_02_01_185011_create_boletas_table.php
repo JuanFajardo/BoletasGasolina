@@ -18,6 +18,7 @@ class CreateBoletasTable extends Migration
             $table->string('boleta');
             $table->date('fecha');
             $table->string('tipo');
+            $table->string('ffof');
             $table->string('litros');
             $table->float('costo', 10,2);
             $table->float('monto', 10,2);

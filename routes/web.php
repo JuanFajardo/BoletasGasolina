@@ -12,12 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('gamp');
+
+    if ( !isset( \Auth::user()->id ) )
+      return view('auth.login');
+    else
+      return view('gamp');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/Proyecto', 'ProyectoController');
 Route::resource('/Boleta', 'BoletaController');
 Route::resource('/Cambio', 'CambioController');
+
+Route::get('/Reporte', 'ReporteController@index');
+Route::post('/Reporte', 'ReporteController@reporte');

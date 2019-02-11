@@ -9,7 +9,7 @@ class CambioController extends Controller
 {
 
     public function __construct(){
-    //$this->middleware('auth');
+      $this->middleware('auth');
     }
 
     public function index(Request $request){
@@ -26,6 +26,7 @@ class CambioController extends Controller
 
     public function store(Request $request){
       $dato = new Cambio;
+      $request["id_user"] = Auth::user()->id;
       $dato->fill($request->all());
       $dato->save();
 
@@ -44,7 +45,7 @@ class CambioController extends Controller
       $dato->monto_nuevo    = $request->monto_nuevo;
       $dato->observacion    = $request->observacion;
       $dato->id_proyecto    = $request->id_proyecto;
-      $dato->id_user        = '1'; //Auth::user()->id;
+      $dato->id_user        = Auth::user()->id;
       $dato->save();
       return redirect('/Cambio');
     }

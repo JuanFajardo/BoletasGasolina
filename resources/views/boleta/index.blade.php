@@ -12,6 +12,12 @@
 @endsection
 
 @section('modal1')
+<datalist id="lista-proyecto">
+  @foreach($proyectos as $proyecto)
+    <option value="{{ $proyecto->apertura }} | {{ $proyecto->actividad }} | {{ number_format($proyecto->total, 2, ",", ".") }} Bs.">
+  @endforeach
+</datalist>
+
 <datalist id="list-unidad">
   <option value='DEPARTAMENTO DE MANTENIMIENTO Y SERVICIOS'>
   <option value='DEPARTAMENTO DE FISCALIZACIÓN'>
@@ -196,13 +202,17 @@
             <label for="boleta_" > <b><i>N° Boleta</i></b> </label>
             {!! Form::text('boleta', $max+1, ['class'=>'form-control', 'placeholder'=>'Apertura', 'id'=>'boleta_', 'required', 'readonly']) !!}
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="fecha_" > <b><i>Fecha</i></b> </label>
-            {!! Form::text('fecha', date('d-m-Y'), ['class'=>'form-control', 'placeholder'=>'Apertura', 'id'=>'fecha_', 'required']) !!}
+            {!! Form::date('fecha', date('d-m-Y'), ['class'=>'form-control', 'placeholder'=>'Apertura', 'id'=>'fecha_', 'required']) !!}
           </div>
-          <div class="col-md-5">
+          <div class="col-md-3">
             <label for="tipo_" > <b><i>Tipo</i></b> </label>
-            {!! Form::select('tipo', [''=>'', 'gasolina'=>'Gasolina', 'contrato'=>'Contratos', 'proyecto'=>'Proyectos', 'certificado'=>'Certificado Presupuestario'], null, ['class'=>'form-control', 'id'=>'tipo_', 'required']) !!}
+            {!! Form::select('tipo', [''=>'', 'combustible'=>'Combustible', 'personal'=>'Personal'], null, ['class'=>'form-control', 'id'=>'tipo_', 'required']) !!}
+          </div>
+          <div class="col-md-3">
+            <label for="ffof_" > <b><i>FF-OF</i></b> </label>
+            {!! Form::select('ffof', [''=>'', '20-210'=>'20-210 Rec. Especificos', '20-220'=>'20-220 Regalias', '41-111'=>'41-111 T.G.N.', '41-113'=>'41-113 T.G.N.-C.T.', '41-119'=>'41-119 IDH'], null, ['class'=>'form-control', 'id'=>'ffof_', 'required']) !!}
           </div>
         </div>
 
@@ -210,11 +220,6 @@
           <div class="col-md-12">
             <label for="id_proyecto_" > <b><i>Proyecto</i></b> </label>
             {!! Form::text('id_proyecto', null, ['class'=>'form-control', 'list'=>'lista-proyecto', 'id'=>'id_proyecto_', 'required']) !!}
-            <datalist id="lista-proyecto">
-              @foreach($proyectos as $proyecto)
-                <option value="{{ $proyecto->apertura }} | {{ $proyecto->actividad }} | {{ number_format($proyecto->total, 2, ",", ".") }} Bs.">
-              @endforeach
-            </datalist>
           </div>
         </div>
 
@@ -226,7 +231,7 @@
           </div>
           <div class="col-md-4">
             <label for="costo_" > <b><i>Costo/Litro Bs/L</i></b> </label>
-            {!! Form::select('costo', ['3.74'=>'Gasolina Especial 3,74 Bs/L', '4.40'=>'Gasolina SUPER 91 4,40 Bs/L', '4.79'=>'Gasolina Premium 4,79 Bs/L'], null, ['class'=>'form-control', 'placeholder'=>' ', 'id'=>'costo_']) !!}
+            {!! Form::select('costo', ['3.74'=>'Gasolina Especial 3,74 Bs/L', '3.72'=>'Diesel Oil 3,72 Bs/L'], null, ['class'=>'form-control', 'placeholder'=>' ', 'id'=>'costo_']) !!}
           </div>
           <div class="col-md-2">
             <label for="monto_" > <b><i>Monto</i></b> </label>
@@ -278,26 +283,73 @@
                 </div>
                 <div class="modal-body panel-body">
                     {!! Form::open(['route'=>['Proyecto.update', ':DATO_ID'], 'method'=>'PATCH', 'id'=>'form-update' ])!!}
+
                     <div class="row">
-                      <div class="col-md-4">
-                        <label for="apertura" > <b><i>Apertura</i></b> </label>
-                        {!! Form::text('apertura', null, ['class'=>'form-control', 'placeholder'=>'Apertura', 'id'=>'apertura', 'required']) !!}
+                      <div class="col-md-3">
+                        <label for="boleta" > <b><i>N° Boleta</i></b> </label>
+                        {!! Form::text('boleta', $max+1, ['class'=>'form-control', 'placeholder'=>'Apertura', 'id'=>'boleta', 'required', 'readonly']) !!}
                       </div>
-                      <div class="col-md-8">
-                        <label for="actividad" > <b><i>Actividad</i></b> </label>
-                        {!! Form::text('actividad', null, ['class'=>'form-control', 'placeholder'=>'Actividad', 'id'=>'actividad', 'required']) !!}
+                      <div class="col-md-3">
+                        <label for="fecha" > <b><i>Fecha</i></b> </label>
+                        {!! Form::date('fecha', date('d-m-Y'), ['class'=>'form-control', 'placeholder'=>'Apertura', 'id'=>'fecha', 'required']) !!}
+                      </div>
+                      <div class="col-md-3">
+                        <label for="tipo" > <b><i>Tipo</i></b> </label>
+                        {!! Form::select('tipo', [''=>'', 'combustible'=>'Combustible', 'personal'=>'Personal'], null, ['class'=>'form-control', 'id'=>'tipo', 'required']) !!}
+                      </div>
+                      <div class="col-md-3">
+                        <label for="ffof" > <b><i>FF-OF</i></b> </label>
+                        {!! Form::select('ffof', [''=>'', '20-210'=>'20-210 Rec. Especificos', '20-220'=>'20-220 Regalias', '41-111'=>'41-111 T.G.N.', '41-113'=>'41-113 T.G.N.-C.T.', '41-119'=>'41-119 IDH'], null, ['class'=>'form-control', 'id'=>'ffof', 'required']) !!}
                       </div>
                     </div>
+
                     <div class="row">
-                      <div class="col-md-4">
-                        <label for="distrito" > <b><i>Distrito</i></b> </label>
-                        {!! Form::select('distrito', ['1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6', '7'=>'7', '8'=>'8', '9'=>'9', '10'=>'10', '11'=>'11', '12'=>'12'], null, ['class'=>'form-control', 'placeholder'=>' ', 'id'=>'distrito', 'required']) !!}
-                      </div>
-                      <div class="col-md-8">
-                        <label for="presupuesto" > <b><i>Presupuesto</i></b> </label>
-                        {!! Form::number('presupuesto', null, ['class'=>'form-control', 'placeholder'=>'Presupuesto', 'id'=>'presupuesto', 'required']) !!}
+                      <div class="col-md-12">
+                        <label for="id_proyecto" > <b><i>Proyecto</i></b> </label>
+                        {!! Form::text('id_proyecto', null, ['class'=>'form-control', 'list'=>'lista-proyecto', 'id'=>'id_proyecto', 'required']) !!}
                       </div>
                     </div>
+
+                    <div class="row" id="tres"  style="display:none;">
+                      <br><b>Presios sacados de la ANH www.anh.gob.bo</b><br>
+                      <div class="col-md-2">
+                        <label for="litros" > <b><i>Cant. Litros</i></b> </label>
+                        {!! Form::text('litros', null, ['class'=>'form-control', 'placeholder'=>'Cant. litros', 'id'=>'litros']) !!}
+                      </div>
+                      <div class="col-md-4">
+                        <label for="costo" > <b><i>Costo/Litro Bs/L</i></b> </label>
+                        {!! Form::select('costo', ['3.74'=>'Gasolina Especial 3,74 Bs/L', '3.72'=>'Diesel Oil 3,72 Bs/L'], null, ['class'=>'form-control', 'placeholder'=>' ', 'id'=>'costo']) !!}
+                      </div>
+                      <div class="col-md-2">
+                        <label for="monto" > <b><i>Monto</i></b> </label>
+                        {!! Form::text('monto', null, ['class'=>'form-control', 'placeholder'=>'Monto', 'id'=>'monto']) !!}
+                      </div>
+                      <div class="col-md-4">
+                        <label for="unidad" > <b><i>Unidad</i></b> </label>
+                        {!! Form::text('unidad', null, ['class'=>'form-control', 'list'=>'list-unidad', 'placeholder'=>'Presupuesto', 'id'=>'unidad']) !!}
+                      </div>
+                    </div>
+
+                    <div class="row" id="cuatro" style="display:none;">
+                        {!! Form::hidden('litros1', '0') !!}
+                        {!! Form::hidden('costo1', '0') !!}
+                      <div class="col-md-6">
+                        <label for="monto1" > <b><i>Monto</i></b> </label>
+                        {!! Form::text('monto1', null, ['class'=>'form-control', 'placeholder'=>'Monto', 'id'=>'monto1']) !!}
+                      </div>
+                      <div class="col-md-6">
+                        <label for="unidad1" > <b><i>Unidad</i></b> </label>
+                        {!! Form::text('unidad1', null, ['class'=>'form-control', 'list'=>'list-unidad', 'placeholder'=>'Presupuesto', 'id'=>'unidad1']) !!}
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label for="observacion" > <b><i>Observacion</i></b> </label>
+                        {!! Form::text('observacion', null, ['class'=>'form-control', 'id'=>'observacion']) !!}
+                      </div>
+                    </div>
+
                     <hr>
                     {!! Form::hidden('id_user', '1') !!}
                     {!! Form::submit('Actualizar ', ['class'=>'btn btn-warning']) !!}
@@ -372,7 +424,7 @@
 
   $('#tipo_').change(function(event){
     var dato = $('#tipo_').val();
-    if(dato == "gasolina"){
+    if(dato == "combustible"){
       $('#uno').show();
       $('#dos').hide();
     }else{
@@ -381,11 +433,30 @@
     }
   });
 
+  $('#tipo').change(function(event){
+    var dato = $('#tipo').val();
+    if(dato == "combustible"){
+      $('#tres').show();
+      $('#cuatro').hide();
+    }else{
+      $('#tres').hide();
+      $('#cuatro').show();
+    }
+  });
+
+
   $('#costo_').change(function(event){
     var costo = $('#costo_').val();
     var litros = $('#litros_').val();
     var monto = parseFloat(costo) * parseFloat(litros);
     $('#monto_').val(monto);
+  });
+
+  $('#costo').change(function(event){
+    var costo = $('#costo').val();
+    var litros = $('#litros').val();
+    var monto = parseFloat(costo) * parseFloat(litros);
+    $('#monto').val(monto);
   });
 
   $('.actualizar').click(function(event){
@@ -408,7 +479,7 @@
     });
   });
 
-  $('.eliminar').click(function(event) {
+  /*$('.eliminar').click(function(event) {
     event.preventDefault();
     var fila = $(this).parents('tr');
     var id = fila.data('id');
@@ -423,6 +494,6 @@
         fila.show();
       });
     }
-  });
+  });*/
 </script>
 @endsection

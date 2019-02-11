@@ -8,9 +8,8 @@ use App\Cambio;
 
 class ProyectoController extends Controller
 {
-
   public function __construct(){
-  //$this->middleware('auth');
+    $this->middleware('auth');
   }
 
   public function index(Request $request){
@@ -26,6 +25,7 @@ class ProyectoController extends Controller
     $dato = new Proyecto;
     $request["gastado"] = "0";
     $request["total"]   = $request->presupuesto;
+    $request["id_user"] = Auth::user()->id;
     $dato->fill($request->all());
     $dato->save();
 
@@ -45,7 +45,7 @@ class ProyectoController extends Controller
       $cambio->monto_antiguo  = $dato->presupuesto;
       $cambio->monto_nuevo    = $request->presupuesto;
       $cambio->observacion    = isset($request->observacion) ? $request->observacion : "Nada" ;
-      $cambio->id_user        = '1'; //Auth::user()->id;
+      $cambio->id_user        = Auth::user()->id;
       $cambio->id_proyecto    = $id;
       $cambio->save();
     }
@@ -54,8 +54,8 @@ class ProyectoController extends Controller
     $dato->actividad  = $request->actividad;
     $dato->distrito   = $request->distrito;
     $dato->presupuesto= $request->presupuesto;
-    $dato->total      = $request->presupuesto;
-    $dato->id_user    = '1'; //Auth::user()->id;
+    $dato->total      = $request->presupuesto - $dato->gastado;
+    $dato->id_user    = Auth::user()->id;
     $dato->save();
     return redirect('/Proyecto');
   }
@@ -69,6 +69,5 @@ class ProyectoController extends Controller
       return redirect('/Proyecto');
     }
   }
-
 
 }
