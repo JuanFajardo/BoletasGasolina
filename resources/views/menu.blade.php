@@ -11,6 +11,9 @@
             <li>
                 <a @yield('menuCambio') href="{{asset('index.php/Cambio')}}"><i class="fa fa-qrcode"></i> Cambios</a>
             </li>
+            <li>
+                <a @yield('menuReporte') href="{{asset('index.php/Reporte')}}"><i class="fa fa-file"></i> Resportes</a>
+            </li>
         </ul>
     </div>
 </nav>
