@@ -25,7 +25,7 @@ class ProyectoController extends Controller
     $dato = new Proyecto;
     $request["gastado"] = "0";
     $request["total"]   = $request->presupuesto;
-    $request["id_user"] = Auth::user()->id;
+    $request["id_user"] = \Auth::user()->id;
     $dato->fill($request->all());
     $dato->save();
 
@@ -45,7 +45,7 @@ class ProyectoController extends Controller
       $cambio->monto_antiguo  = $dato->presupuesto;
       $cambio->monto_nuevo    = $request->presupuesto;
       $cambio->observacion    = isset($request->observacion) ? $request->observacion : "Nada" ;
-      $cambio->id_user        = Auth::user()->id;
+      $cambio->id_user        = \Auth::user()->id;
       $cambio->id_proyecto    = $id;
       $cambio->save();
     }
@@ -55,7 +55,7 @@ class ProyectoController extends Controller
     $dato->distrito   = $request->distrito;
     $dato->presupuesto= $request->presupuesto;
     $dato->total      = $request->presupuesto - $dato->gastado;
-    $dato->id_user    = Auth::user()->id;
+    $dato->id_user    = \Auth::user()->id;
     $dato->save();
     return redirect('/Proyecto');
   }

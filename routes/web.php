@@ -12,7 +12,6 @@
 */
 
 Route::get('/', function () {
-
     if ( !isset( \Auth::user()->id ) )
       return view('auth.login');
     else

@@ -26,7 +26,7 @@ class BoletaController extends Controller
 
     public function store(Request $request){
       $proyectos = explode("|", $request->id_proyecto);
-      $request["id_user"] = Auth::user()->id;
+      $request["id_user"] = \Auth::user()->id;
       $proyecto = Proyecto::Where('apertura', '=', trim($proyectos[0]) )->get();
       $id_proyecto = $proyecto[0]->id;
       $monto = 0;
@@ -42,7 +42,7 @@ class BoletaController extends Controller
         $dato->monto  = $request->monto;
         $dato->unidad = $request->unidad;
         $dato->observacion  = $request->observacion;
-        $dato->id_user= Auth::user()->id;
+        $dato->id_user= \Auth::user()->id;
         $dato->id_proyecto  = $id_proyecto;
         $dato->save();
         $monto = $request->monto;
@@ -56,7 +56,7 @@ class BoletaController extends Controller
         $dato->monto  = $request->monto1;
         $dato->unidad = $request->unidad1;
         $dato->observacion  = $request->observacion;
-        $dato->id_user= Auth::user()->id;
+        $dato->id_user= \Auth::user()->id;
         $dato->id_proyecto  = $id_proyecto;
         $dato->save();
         $monto = $request->monto1;
@@ -69,7 +69,7 @@ class BoletaController extends Controller
       $proyecto = Proyecto::find($id_proyecto);
       $proyecto->gastado  = $gastado;
       $proyecto->total    = $total;
-      $proyecto->id_user  = Auth::user()->id;
+      $proyecto->id_user  = \Auth::user()->id;
       $proyecto->save();
       return redirect('/Boleta');
     }
@@ -90,7 +90,7 @@ class BoletaController extends Controller
       $dato->unidad     = $request->unidad;
       $dato->observacion= $request->observacion;
       $dato->id_proyecto= $request->id_proyecto;
-      $dato->id_user    = Auth::user()->id;
+      $dato->id_user    = \Auth::user()->id;
       $dato->save();
       return redirect('/Boleta');
     }
