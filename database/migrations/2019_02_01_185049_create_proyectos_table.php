@@ -18,9 +18,9 @@ class CreateProyectosTable extends Migration
             $table->string('apertura');
             $table->string('actividad');
             $table->integer('distrito');
-            $table->float('presupuesto', 10,2);
-            $table->float('gastado', 10,2);
-            $table->float('total', 10,2);
+            $table->double('presupuesto', 15,2);
+            $table->double('gastado', 15,2);
+            $table->double('total', 15,2);
             $table->integer('id_user');
             $table->softDeletes();
             $table->timestamps();

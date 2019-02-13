@@ -146,7 +146,7 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $('#tablaGamp').DataTable({
-      "order": [[ 4, 'desc']],
+      "order": [[ 7, 'asc']],
       "language": {
         "bDeferRender": true,
         "sEmtpyTable": "No ay registros",
