@@ -14,7 +14,7 @@
 @section('modal1')
 <datalist id="lista-proyecto">
   @foreach($proyectos as $proyecto)
-    <option value="{{ $proyecto->apertura }} | {{ $proyecto->actividad }} | {{ number_format($proyecto->total, 2, ",", ".") }} Bs.">
+    <option value="{{ $proyecto->id }}| {{ $proyecto->apertura }} | {{ $proyecto->actividad }} | {{ number_format($proyecto->total, 2, ",", ".") }} Bs.">
   @endforeach
 </datalist>
 
@@ -89,6 +89,7 @@
   <option value='SUB ALCLADIA DE TARAPAYA'>
   <option value='UNIDAD DE DEPORTES'>
   <option value='JEFATURA DE GENERO GENERACIONAL (SLIM)'>
+  <option value='SECRETARIA ADMINISTRATIVA Y FINANCIERA'>  
   <option value=''''>
   <option value='SECRETARIA DE DESARROLLO HUMANO'>
   <option value='SUB ALCALDIA DE TARAPAYA'>
@@ -223,9 +224,16 @@
           </div>
         </div>
 
+        <div class="row">
+          <div class="col-md-12">
+            <label for="unidad_" > <b><i>Unidad Solicitante</i></b> </label>
+            {!! Form::text('unidad', null, ['class'=>'form-control', 'list'=>'list-unidad', 'placeholder'=>'Presupuesto', 'id'=>'unidad_']) !!}
+          </div>
+        </div>
+
         <div class="row" id="uno"  style="display:none;">
           <br><b>Presios sacados de la ANH www.anh.gob.bo</b><br>
-          <div class="col-md-2">
+          <div class="col-md-4">
             <label for="litros_" > <b><i>Cant. Litros</i></b> </label>
             {!! Form::text('litros', null, ['class'=>'form-control', 'placeholder'=>'Cant. litros', 'id'=>'litros_']) !!}
           </div>
@@ -233,14 +241,11 @@
             <label for="costo_" > <b><i>Costo/Litro Bs/L</i></b> </label>
             {!! Form::select('costo', ['3.74'=>'Gasolina Especial 3,74 Bs/L', '3.72'=>'Diesel Oil 3,72 Bs/L'], null, ['class'=>'form-control', 'placeholder'=>' ', 'id'=>'costo_']) !!}
           </div>
-          <div class="col-md-2">
+          <div class="col-md-4">
             <label for="monto_" > <b><i>Monto</i></b> </label>
             {!! Form::text('monto', null, ['class'=>'form-control', 'placeholder'=>'Monto', 'id'=>'monto_']) !!}
           </div>
-          <div class="col-md-4">
-            <label for="unidad_" > <b><i>Unidad</i></b> </label>
-            {!! Form::text('unidad', null, ['class'=>'form-control', 'list'=>'list-unidad', 'placeholder'=>'Presupuesto', 'id'=>'unidad_']) !!}
-          </div>
+
         </div>
 
         <div class="row" id="dos" style="display:none;">
@@ -310,9 +315,16 @@
                       </div>
                     </div>
 
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label for="unidad" > <b><i>Unidad Solicitante</i></b> </label>
+                        {!! Form::text('unidad', null, ['class'=>'form-control', 'list'=>'list-unidad', 'placeholder'=>'Presupuesto', 'id'=>'unidad']) !!}
+                      </div>
+                    </div>
+
                     <div class="row" id="tres"  style="display:none;">
                       <br><b>Presios sacados de la ANH www.anh.gob.bo</b><br>
-                      <div class="col-md-2">
+                      <div class="col-md-4">
                         <label for="litros" > <b><i>Cant. Litros</i></b> </label>
                         {!! Form::text('litros', null, ['class'=>'form-control', 'placeholder'=>'Cant. litros', 'id'=>'litros']) !!}
                       </div>
@@ -320,13 +332,9 @@
                         <label for="costo" > <b><i>Costo/Litro Bs/L</i></b> </label>
                         {!! Form::select('costo', ['3.74'=>'Gasolina Especial 3,74 Bs/L', '3.72'=>'Diesel Oil 3,72 Bs/L'], null, ['class'=>'form-control', 'placeholder'=>' ', 'id'=>'costo']) !!}
                       </div>
-                      <div class="col-md-2">
+                      <div class="col-md-4">
                         <label for="monto" > <b><i>Monto</i></b> </label>
                         {!! Form::text('monto', null, ['class'=>'form-control', 'placeholder'=>'Monto', 'id'=>'monto']) !!}
-                      </div>
-                      <div class="col-md-4">
-                        <label for="unidad" > <b><i>Unidad</i></b> </label>
-                        {!! Form::text('unidad', null, ['class'=>'form-control', 'list'=>'list-unidad', 'placeholder'=>'Presupuesto', 'id'=>'unidad']) !!}
                       </div>
                     </div>
 

@@ -14,7 +14,7 @@ class BoletaController extends Controller
 
     public function index(Request $request){
       $datos = \DB::table('boletas')->join('proyectos', 'boletas.id_proyecto', '=', 'proyectos.id')
-                                    ->whereNull('deleted_at')
+                                    ->whereNull('boletas.deleted_at')
                                     ->select('boletas.*', 'proyectos.actividad', 'proyectos.apertura')
                                     ->get();
       $proyectos = \DB::table('proyectos')->get();
@@ -27,11 +27,11 @@ class BoletaController extends Controller
     }
 
     public function store(Request $request){
-      $proyectos = explode("|", $request->id_proyecto);
+      $proyectos          = explode("|", $request->id_proyecto);
       $request["id_user"] = \Auth::user()->id;
-      $proyecto = Proyecto::Where('apertura', '=', trim($proyectos[0]) )->get();
-      $id_proyecto = $proyecto[0]->id;
-      $monto = 0;
+      $proyecto           = Proyecto::find( trim($proyectos[0]) );
+      $id_proyecto        = $proyecto->id;
+      $monto              = 0;
 
       if($request->tipo == "combustible"){
         $dato = new Boleta;
