@@ -19,8 +19,8 @@ class ReporteController extends Controller
     }
 
     public function reporte(Request $request){
-      $inicio     = $request->inicio; 	    //"2019-02-01"
-      $fin	      = $request->fin;       //"2019-02-28"
+      $inicio     = date("d-m-Y",strtotime($request->inicio."- 1 days")); 	    //"2019-02-01"
+      $fin	      = date("d-m-Y",strtotime($request->fin."+ 1 days"));       //"2019-02-28"
       $ffof       = $request->ffof;	      //"todo"
       $tipo       = $request->tipo;	      //"todo"
       $combustible= $request->combustible;	//null
@@ -34,6 +34,8 @@ class ReporteController extends Controller
       $raw3 =  $combustible != null   ? "boletas.combustible= '".$combustible."' " : " 1 = 1 ";
       $raw4 =  $usuario     != null   ? "boletas.id_user    = '".$usuario."' " : " 1 = 1 ";
       $raw5 =  $id_proyecto != "todo" ? "boletas.id_proyecto= '".$id_proyecto."' " : " 1 = 1 ";
+
+
 
       $datos = \DB::table('boletas')->join('proyectos', 'boletas.id_proyecto', '=', 'proyectos.id')
                                     ->join('users', 'boletas.id_user', '=', 'users.id')
