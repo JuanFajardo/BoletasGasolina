@@ -15,6 +15,7 @@ class CambioController extends Controller
     public function index(Request $request){
       $datos = Cambio::all();
       $datos = \DB::table('cambios')->join('proyectos', 'cambios.id_proyecto', '=', 'proyectos.id')
+                                    ->whereNull('cambios.deleted_at')
                                     ->select('cambios.*', 'proyectos.apertura', 'proyectos.actividad')
                                     ->get();
       if ($request->ajax()) {

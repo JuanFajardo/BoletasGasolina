@@ -14,7 +14,9 @@ class BoletaController extends Controller
 
     public function index(Request $request){
       $datos = \DB::table('boletas')->join('proyectos', 'boletas.id_proyecto', '=', 'proyectos.id')
-                                    ->select('boletas.*', 'proyectos.actividad', 'proyectos.apertura')->get();
+                                    ->whereNull('deleted_at')
+                                    ->select('boletas.*', 'proyectos.actividad', 'proyectos.apertura')
+                                    ->get();
       $proyectos = \DB::table('proyectos')->get();
       $max   = \DB::table('boletas')->max('id');
       if ($request->ajax()) {

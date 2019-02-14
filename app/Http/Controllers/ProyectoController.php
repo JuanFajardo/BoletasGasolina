@@ -13,7 +13,7 @@ class ProyectoController extends Controller
   }
 
   public function index(Request $request){
-    $datos = \DB::table('proyectos')->orderBy('total','asc')->get();
+    $datos = \DB::table('proyectos')->whereNull('deleted_at')->orderBy('total','asc')->get();
     if ($request->ajax()) {
       return $datos;
     }else{

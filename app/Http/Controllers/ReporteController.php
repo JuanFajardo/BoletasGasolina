@@ -12,7 +12,7 @@ class ReporteController extends Controller
     public function __construct(){
       $this->middleware('auth');
     }
-    
+
     public function index(){
       $proyectos = Proyecto::all();
       return view('reporte.index', compact('proyectos'));
@@ -37,6 +37,7 @@ class ReporteController extends Controller
 
       $datos = \DB::table('boletas')->join('proyectos', 'boletas.id_proyecto', '=', 'proyectos.id')
                                     ->join('users', 'boletas.id_user', '=', 'users.id')
+                                    ->whereNull('boletas.deleted_at')
                                     ->where('boletas.fecha', '>', $inicio)
                                     ->where('boletas.fecha', '<', $fin)
                                     ->whereRaw($raw1)
