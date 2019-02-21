@@ -56,7 +56,7 @@ class BoletaController extends Controller
         $dato->litros = "0";
         $dato->costo  = "0";
         $dato->monto  = $request->monto1;
-        $dato->unidad = $request->unidad1;
+        $dato->unidad = $request->unidad;
         $dato->observacion  = $request->observacion;
         $dato->id_user= \Auth::user()->id;
         $dato->id_proyecto  = $id_proyecto;

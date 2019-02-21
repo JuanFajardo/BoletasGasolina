@@ -27,3 +27,6 @@ Route::resource('/Cambio', 'CambioController');
 
 Route::get('/Reporte', 'ReporteController@index');
 Route::post('/Reporte', 'ReporteController@reporte');
+
+Route::get('/clave', 'ReporteController@claveGet')->name('usuario.clave');
+Route::post('/clave', 'ReporteController@clavePost')->name('usuario.cambiar');

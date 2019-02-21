@@ -89,7 +89,7 @@
   <option value='SUB ALCLADIA DE TARAPAYA'>
   <option value='UNIDAD DE DEPORTES'>
   <option value='JEFATURA DE GENERO GENERACIONAL (SLIM)'>
-  <option value='SECRETARIA ADMINISTRATIVA Y FINANCIERA'>  
+  <option value='SECRETARIA ADMINISTRATIVA Y FINANCIERA'>
   <option value=''''>
   <option value='SECRETARIA DE DESARROLLO HUMANO'>
   <option value='SUB ALCALDIA DE TARAPAYA'>
@@ -213,7 +213,7 @@
           </div>
           <div class="col-md-3">
             <label for="ffof_" > <b><i>FF-OF</i></b> </label>
-            {!! Form::select('ffof', [''=>'', '20-210'=>'20-210 Rec. Especificos', '20-220'=>'20-220 Regalias', '41-111'=>'41-111 T.G.N.', '41-113'=>'41-113 T.G.N.-C.T.', '41-119'=>'41-119 IDH'], null, ['class'=>'form-control', 'id'=>'ffof_', 'required']) !!}
+            {!! Form::select('ffof', ['0'=>'Ninguno', '20-210'=>'20-210 Rec. Especificos', '20-220'=>'20-220 Regalias', '41-111'=>'41-111 T.G.N.', '41-113'=>'41-113 T.G.N.-C.T.', '41-119'=>'41-119 IDH'], null, ['class'=>'form-control', 'id'=>'ffof_', 'required']) !!}
           </div>
         </div>
 
@@ -223,14 +223,14 @@
             {!! Form::text('id_proyecto', null, ['class'=>'form-control', 'list'=>'lista-proyecto', 'id'=>'id_proyecto_', 'required']) !!}
           </div>
         </div>
-
+        <br>
         <div class="row">
           <div class="col-md-12">
             <label for="unidad_" > <b><i>Unidad Solicitante</i></b> </label>
             {!! Form::text('unidad', null, ['class'=>'form-control', 'list'=>'list-unidad', 'placeholder'=>'Presupuesto', 'id'=>'unidad_']) !!}
           </div>
         </div>
-
+        <br>
         <div class="row" id="uno"  style="display:none;">
           <br><b>Presios sacados de la ANH www.anh.gob.bo</b><br>
           <div class="col-md-4">
@@ -247,24 +247,20 @@
           </div>
 
         </div>
-
+        <br>
         <div class="row" id="dos" style="display:none;">
             {!! Form::hidden('litros1', '0') !!}
             {!! Form::hidden('costo1', '0') !!}
-          <div class="col-md-6">
+          <div class="col-md-12">
             <label for="monto1_" > <b><i>Monto</i></b> </label>
             {!! Form::text('monto1', null, ['class'=>'form-control', 'placeholder'=>'Monto', 'id'=>'monto1_']) !!}
           </div>
-          <div class="col-md-6">
-            <label for="unidad1_" > <b><i>Unidad</i></b> </label>
-            {!! Form::text('unidad1', null, ['class'=>'form-control', 'list'=>'list-unidad', 'placeholder'=>'Presupuesto', 'id'=>'unidad1_']) !!}
-          </div>
         </div>
-
+        <br>
         <div class="row">
           <div class="col-md-12">
             <label for="observacion_" > <b><i>Observacion</i></b> </label>
-            {!! Form::text('observacion', null, ['class'=>'form-control', 'id'=>'observacion_']) !!}
+            {!! Form::text('observacion', null, ['class'=>'form-control', 'id'=>'observacion_', 'required']) !!}
           </div>
         </div>
 
@@ -304,24 +300,24 @@
                       </div>
                       <div class="col-md-3">
                         <label for="ffof" > <b><i>FF-OF</i></b> </label>
-                        {!! Form::select('ffof', [''=>'', '20-210'=>'20-210 Rec. Especificos', '20-220'=>'20-220 Regalias', '41-111'=>'41-111 T.G.N.', '41-113'=>'41-113 T.G.N.-C.T.', '41-119'=>'41-119 IDH'], null, ['class'=>'form-control', 'id'=>'ffof', 'required']) !!}
+                        {!! Form::select('ffof', ['0'=>'Ninguno', '20-210'=>'20-210 Rec. Especificos', '20-220'=>'20-220 Regalias', '41-111'=>'41-111 T.G.N.', '41-113'=>'41-113 T.G.N.-C.T.', '41-119'=>'41-119 IDH'], null, ['class'=>'form-control', 'id'=>'ffof', 'required']) !!}
                       </div>
                     </div>
-
+                    <br>
                     <div class="row">
                       <div class="col-md-12">
                         <label for="id_proyecto" > <b><i>Proyecto</i></b> </label>
                         {!! Form::text('id_proyecto', null, ['class'=>'form-control', 'list'=>'lista-proyecto', 'id'=>'id_proyecto', 'required']) !!}
                       </div>
                     </div>
-
+                    <br>
                     <div class="row">
                       <div class="col-md-12">
                         <label for="unidad" > <b><i>Unidad Solicitante</i></b> </label>
                         {!! Form::text('unidad', null, ['class'=>'form-control', 'list'=>'list-unidad', 'placeholder'=>'Presupuesto', 'id'=>'unidad']) !!}
                       </div>
                     </div>
-
+                    <br>
                     <div class="row" id="tres"  style="display:none;">
                       <br><b>Presios sacados de la ANH www.anh.gob.bo</b><br>
                       <div class="col-md-4">
@@ -337,24 +333,20 @@
                         {!! Form::text('monto', null, ['class'=>'form-control', 'placeholder'=>'Monto', 'id'=>'monto']) !!}
                       </div>
                     </div>
-
+                    <br>
                     <div class="row" id="cuatro" style="display:none;">
                         {!! Form::hidden('litros1', '0') !!}
                         {!! Form::hidden('costo1', '0') !!}
-                      <div class="col-md-6">
+                      <div class="col-md-12">
                         <label for="monto1" > <b><i>Monto</i></b> </label>
                         {!! Form::text('monto1', null, ['class'=>'form-control', 'placeholder'=>'Monto', 'id'=>'monto1']) !!}
                       </div>
-                      <div class="col-md-6">
-                        <label for="unidad1" > <b><i>Unidad</i></b> </label>
-                        {!! Form::text('unidad1', null, ['class'=>'form-control', 'list'=>'list-unidad', 'placeholder'=>'Presupuesto', 'id'=>'unidad1']) !!}
-                      </div>
                     </div>
-
+                    <br>
                     <div class="row">
                       <div class="col-md-12">
                         <label for="observacion" > <b><i>Observacion</i></b> </label>
-                        {!! Form::text('observacion', null, ['class'=>'form-control', 'id'=>'observacion']) !!}
+                        {!! Form::text('observacion', null, ['class'=>'form-control', 'id'=>'observacion', 'required']) !!}
                       </div>
                     </div>
 
@@ -365,7 +357,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>required
 @endsection
 
 

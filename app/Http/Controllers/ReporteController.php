@@ -27,7 +27,6 @@ class ReporteController extends Controller
       $usuario    = $request->usuario;	      //null
       $id_proyecto= $request->id_proyecto;	//"todo"
       $btn	      = $request->btn;       //"pdf"
-      $vista      = 'reporte.pdf';
 
       $raw1 =  $ffof        != "todo" ? "boletas.ffof       = '".$ffof."' " : " 1 = 1 ";
       $raw2 =  $tipo        != "todo" ? "boletas.tipo       = '".$tipo."' " : " 1 = 1 ";
@@ -49,12 +48,29 @@ class ReporteController extends Controller
                                     ->whereRaw($raw5)
                                     ->select('boletas.*', 'proyectos.*', 'users.name', 'users.email')
                                     ->get();
-      if($btn != "pdf"){
-        return view($vista, compact('datos', 'inicio', 'fin'));
-      }else{
-        $pdf = \PDF::loadView($vista, compact('datos', 'inicio', 'fin'));
+      if($btn == "doc"){
+        return view('reporte.pdf', compact('datos', 'inicio', 'fin'));
+      }elseif ($btn == "xls") {
+        return view('reporte.excel', compact('datos', 'inicio', 'fin'));
+      }elseif ($btn == "pdf") {
+        $pdf = \PDF::loadView('reporte.pdf', compact('datos', 'inicio', 'fin'));
         return $pdf->download('listado.pdf');
       }
-      return $request->all();
     }
+
+    public function claveGet(){
+      return view('clave');
+    }
+
+    public function clavePost(Request $request){
+      //return $request->all();
+      $id = \Auth::user()->id;
+      $dato = \App\User::find($id);
+      $dato->password = bcrypt($request->clave);
+      $dato->save();
+      $clave = "OK";
+      return redirect('Proyecto')->with( ['clave' => $clave] );;
+    }
+
+
 }

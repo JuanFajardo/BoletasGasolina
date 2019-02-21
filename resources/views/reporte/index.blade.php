@@ -60,11 +60,14 @@
 </div>
 <br><br>
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-4">
     <button type="submit" name="btn" value="pdf" class="btn btn-danger"> <i class="fa fa-download"></i> Reporte Generado en PDF</button>
   </div>
-  <div class="col-md-6">
-    <button type="submit" name="btn"  value="doc" class="btn btn-primary"> <i class="fa fa-file-text"></i> Reporte Generado en WORD</button>
+  <div class="col-md-4">
+    <button type="submit" name="btn"  value="xls" class="btn btn-success"> <i class="fa fa-download"></i> Reporte Generado en EXCEL</button>
+  </div>
+  <div class="col-md-4">
+    <button type="submit" name="btn"  value="doc" class="btn btn-primary"> <i class="fa fa-file-text"></i> Reporte Generado en HTML</button>
   </div>
 </div>
 {!! Form::close() !!}

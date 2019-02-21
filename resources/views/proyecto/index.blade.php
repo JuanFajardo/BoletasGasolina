@@ -39,7 +39,7 @@
         <div class="row">
           <div class="col-md-4">
             <label for="distrito_" > <b><i>Distrito</i></b> </label>
-            {!! Form::select('distrito', ['1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6', '7'=>'7', '8'=>'8', '9'=>'9', '10'=>'10', '11'=>'11', '12'=>'12', '13'=>'13', '14'=>'14', '15'=>'15', '16'=>'16', '17'=>'17', '18'=>'18', '19'=>'19', '20'=>'20' ], null, ['class'=>'form-control', 'placeholder'=>' ', 'id'=>'distrito_', 'required']) !!}
+            {!! Form::select('distrito', ['0'=>'MD', '1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6', '7'=>'7', '8'=>'8', '9'=>'9', '10'=>'10', '11'=>'11', '12'=>'12', '13'=>'13', '14'=>'14', '15'=>'15', '16'=>'16', '17'=>'17', '18'=>'18', '19'=>'19', '20'=>'20' ], null, ['class'=>'form-control', 'placeholder'=>' ', 'id'=>'distrito_', 'required']) !!}
           </div>
           <div class="col-md-8">
             <label for="presupuesto_" > <b><i>Presupuesto</i></b> </label>
@@ -106,6 +106,11 @@
 
 
 @section('cuerpo')
+@if( \Session::get('clave') == "OK" )
+  <script type="text/javascript">
+    alert("La contraseña se actualizo correctamente");
+  </script>
+@endif
 <table id="tablaGamp" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
   <thead>
     <tr>
@@ -125,7 +130,13 @@
         <td>{{ $dato->id }}</td>
         <td>{{ $dato->apertura }}</td>
         <td>{{ $dato->actividad }}</td>
-        <td>Dist. {{ $dato->distrito }}</td>
+        <td>Dist.
+            @if ($dato->distrito == "0")
+            MD
+            @else
+              {{ $dato->distrito }}
+            @endif
+        </td>
         <td>{{ number_format($dato->presupuesto,2,",",".") }}</td>
         <td>{{ number_format($dato->gastado,2,",",".") }}</td>
         <td>{{ number_format($dato->total,2,",",".") }}</td>
