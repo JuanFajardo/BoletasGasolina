@@ -77,11 +77,20 @@ class BoletaController extends Controller
     }
 
     public function show($id){
-      $datos = Boleta::Where('id', '=', $id)->get();
+      $datos = \DB::table('boletas')->join('proyectos', 'boletas.id_proyecto', '=', 'proyectos.id')
+                              ->select('boletas.id', 'boletas.fecha', 'boletas.tipo', 'boletas.ffof', 'boletas.litros', 'boletas.costo', 'boletas.monto', 'boletas.unidad',
+                                        'boletas.observacion', 'boletas.id_proyecto',  'proyectos.apertura', 'proyectos.actividad')
+                              ->where('boletas.id', '=', $id)
+                              ->get();
       return $datos;
     }
 
     public function update(Request $request, $id){
+      //return $request->all();
+      $proyectos          = explode("|", $request->id_proyecto);
+      $proyecto           = Proyecto::find( trim($proyectos[0]) );
+      $id_proyecto        = $proyecto->id;
+
       $dato = Boleta::find($id);
       $dato->boleta     = $request->boleta;
       $dato->fecha      = date('Y-m-d', strtotime($request->fecha));
@@ -91,7 +100,7 @@ class BoletaController extends Controller
       $dato->monto      = $request->monto;
       $dato->unidad     = $request->unidad;
       $dato->observacion= $request->observacion;
-      $dato->id_proyecto= $request->id_proyecto;
+      $dato->id_proyecto= $id_proyecto;
       $dato->id_user    = \Auth::user()->id;
       $dato->save();
       return redirect('/Boleta');
@@ -100,12 +109,11 @@ class BoletaController extends Controller
     public function destroy(Request $request, $id){
       if( $request->ajax() ){
         $dato = Boleta::find($id);
-        $dato->delete();
+        //$dato->delete();
         return "Boleta Eliminada";
       }else{
         return redirect('/Boleta');
       }
     }
-
 
 }

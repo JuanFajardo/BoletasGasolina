@@ -188,6 +188,7 @@
   <option value='JEFATURA DE CONTABILIDAD'>
   <option value='DIRECCION DE DESARROLLO ECONOMICO (HUCHUNI)'>
 </datalist>
+
 <div id="modalAgregar" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content panel panel-primary">
@@ -283,7 +284,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body panel-body">
-                    {!! Form::open(['route'=>['Proyecto.update', ':DATO_ID'], 'method'=>'PATCH', 'id'=>'form-update' ])!!}
+                    {!! Form::open(['route'=>['Boleta.update', ':DATO_ID'], 'method'=>'PATCH', 'id'=>'form-update' ])!!}
 
                     <div class="row">
                       <div class="col-md-3">
@@ -322,15 +323,15 @@
                       <br><b>Presios sacados de la ANH www.anh.gob.bo</b><br>
                       <div class="col-md-4">
                         <label for="litros" > <b><i>Cant. Litros</i></b> </label>
-                        {!! Form::text('litros', null, ['class'=>'form-control', 'placeholder'=>'Cant. litros', 'id'=>'litros']) !!}
+                        {!! Form::text('litros', null, ['class'=>'form-control', 'placeholder'=>'Cant. litros', 'id'=>'litros', 'readonly']) !!}
                       </div>
                       <div class="col-md-4">
                         <label for="costo" > <b><i>Costo/Litro Bs/L</i></b> </label>
-                        {!! Form::select('costo', ['3.74'=>'Gasolina Especial 3,74 Bs/L', '3.72'=>'Diesel Oil 3,72 Bs/L'], null, ['class'=>'form-control', 'placeholder'=>' ', 'id'=>'costo']) !!}
+                        {!! Form::select('costo', ['3.74'=>'Gasolina Especial 3,74 Bs/L', '3.72'=>'Diesel Oil 3,72 Bs/L'], null, ['class'=>'form-control', 'placeholder'=>' ', 'id'=>'costo', 'readonly']) !!}
                       </div>
                       <div class="col-md-4">
                         <label for="monto" > <b><i>Monto</i></b> </label>
-                        {!! Form::text('monto', null, ['class'=>'form-control', 'placeholder'=>'Monto', 'id'=>'monto']) !!}
+                        {!! Form::text('monto', null, ['class'=>'form-control', 'placeholder'=>'Monto', 'id'=>'monto', 'readonly']) !!}
                       </div>
                     </div>
                     <br>
@@ -339,7 +340,7 @@
                         {!! Form::hidden('costo1', '0') !!}
                       <div class="col-md-12">
                         <label for="monto1" > <b><i>Monto</i></b> </label>
-                        {!! Form::text('monto1', null, ['class'=>'form-control', 'placeholder'=>'Monto', 'id'=>'monto1']) !!}
+                        {!! Form::text('monto1', null, ['class'=>'form-control', 'placeholder'=>'Monto', 'id'=>'monto1', 'readonly']) !!}
                       </div>
                     </div>
                     <br>
@@ -392,7 +393,7 @@
   </tbody>
 </table>
 
-{!! Form::open(['route'=>['Proyecto.destroy', ':DATO_ID'], 'method'=>'DELETE', 'id'=>'form-delete']) !!}
+{!! Form::open(['route'=>['Boleta.destroy', ':DATO_ID'], 'method'=>'DELETE', 'id'=>'form-delete']) !!}
 {!! Form::close() !!}
 @endsection
 
@@ -466,14 +467,35 @@
     var form = $('#form-update')
     var url = form.attr('action').replace(':DATO_ID', id);
     form.get(0).setAttribute('action', url);
-    link  = '{{ asset("/index.php/Proyecto/")}}/'+id;
+    link  = '{{ asset("/index.php/Boleta/")}}/'+id;
     $.getJSON(link, function(data, textStatus) {
       if(data.length > 0){
         $.each(data, function(index, el) {
-          $('#apertura').val(el.apertura);
-          $('#actividad').val(el.actividad);
-          $('#distrito').val(el.distrito);
-          $('#presupuesto').val(el.presupuesto);
+          //'id', 'boleta', 'fecha', 'tipo', 'ffof', 'litros', 'costo', 'monto', 'unidad', 'observacion', 'id_user', 'id_proyecto'
+
+          $('#boleta').val(el.boleta);
+          $('#fecha').val(el.fecha);
+          $('#tipo').val(el.tipo);
+          $('#ffof').val(el.ffof);
+
+          if(el.litros>0){
+            $('#tres').show();
+            $('#cuatro').hide();
+
+            $('#litros').val(el.litros);
+            $('#costo').val(el.costo);
+            $('#monto').val(el.monto);
+          }else{
+            $('#monto').val(el.monto);
+            $('#tres').hide();
+            $('#cuatro').show();
+          }
+
+
+          $('#unidad').val(el.unidad);
+          $('#observacion').val(el.observacion);
+          $('#id_proyecto').val(el.id_proyecto+"|"+ el.apertura + "|"	+ el.actividad);
+
         });
       }
     });

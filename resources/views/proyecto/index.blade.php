@@ -39,7 +39,7 @@
         <div class="row">
           <div class="col-md-4">
             <label for="distrito_" > <b><i>Distrito</i></b> </label>
-            {!! Form::select('distrito', ['0'=>'MD', '1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6', '7'=>'7', '8'=>'8', '9'=>'9', '10'=>'10', '11'=>'11', '12'=>'12', '13'=>'13', '14'=>'14', '15'=>'15', '16'=>'16', '17'=>'17', '18'=>'18', '19'=>'19', '20'=>'20' ], null, ['class'=>'form-control', 'placeholder'=>' ', 'id'=>'distrito_', 'required']) !!}
+            {!! Form::select('distrito', ['-1'=>'Chasquivillque', '0'=>'MD', '1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6', '7'=>'7', '8'=>'8', '9'=>'9', '10'=>'10', '11'=>'11', '12'=>'12', '13'=>'13', '14'=>'14', '15'=>'15', '16'=>'16', '17'=>'17', '18'=>'18', '19'=>'19', '20'=>'20' ], null, ['class'=>'form-control', 'placeholder'=>' ', 'id'=>'distrito_', 'required']) !!}
           </div>
           <div class="col-md-8">
             <label for="presupuesto_" > <b><i>Presupuesto</i></b> </label>
