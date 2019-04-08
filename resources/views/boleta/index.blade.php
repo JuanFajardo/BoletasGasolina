@@ -501,7 +501,7 @@
     });
   });
 
-  /*$('.eliminar').click(function(event) {
+  $('.eliminar').click(function(event) {
     event.preventDefault();
     var fila = $(this).parents('tr');
     var id = fila.data('id');
@@ -516,6 +516,6 @@
         fila.show();
       });
     }
-  });*/
+  });
 </script>
 @endsection

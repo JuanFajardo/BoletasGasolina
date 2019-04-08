@@ -109,7 +109,15 @@ class BoletaController extends Controller
     public function destroy(Request $request, $id){
       if( $request->ajax() ){
         $dato = Boleta::find($id);
-        //$dato->delete();
+
+        $proyecto = \App\Proyecto::find($dato->id_proyecto);
+        $proyecto->presupuesto = $proyecto->presupuesto + $dato->monto;
+        $proyecto->gastado     = $proyecto->gastado - $dato->monto;
+        $proyecto->total       = $proyecto->presupuesto - $proyecto->gastado;
+        $proyecto->save();
+
+        $data = Boleta::find($id);
+        $data->delete();
         return "Boleta Eliminada";
       }else{
         return redirect('/Boleta');
