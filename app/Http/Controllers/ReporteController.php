@@ -30,7 +30,7 @@ class ReporteController extends Controller
 
       $raw1 =  $ffof        != "todo" ? "boletas.ffof       = '".$ffof."' " : " 1 = 1 ";
       $raw2 =  $tipo        != "todo" ? "boletas.tipo       = '".$tipo."' " : " 1 = 1 ";
-      $raw3 =  $combustible != null   ? "boletas.combustible= '".$combustible."' " : " 1 = 1 ";
+      $raw3 =  $combustible != null   ? "boletas.tipo       = '".$combustible."' " : " 1 = 1 ";
       $raw4 =  $usuario     != null   ? "boletas.id_user    = '".$usuario."' " : " 1 = 1 ";
       $raw5 =  $id_proyecto != "todo" ? "boletas.id_proyecto= '".$id_proyecto."' " : " 1 = 1 ";
 
