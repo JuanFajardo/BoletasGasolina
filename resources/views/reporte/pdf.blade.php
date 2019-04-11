@@ -43,7 +43,13 @@
             <td> {{ $dato->apertura }}  </td>
             <td> {{ $dato->actividad }} </td>
             <td> {{ $dato->distrito }}  </td>
-            <td> {{ $dato->tipo }}      </td>
+            <td> {{ $dato->tipo }}
+              @if( $dato->costo == '3.74' )
+              <b> Gasolina </b>
+              @else
+              <b> Diesel</b>
+              @endif
+            </td>
             <td> {{ $dato->ffof }}      </td>
             <td> {{ $dato->litros }}    </td>
             <td> {{ $dato->monto }} Bs. </td>
