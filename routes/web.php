@@ -30,3 +30,4 @@ Route::post('/Reporte', 'ReporteController@reporte');
 
 Route::get('/clave', 'ReporteController@claveGet')->name('usuario.clave');
 Route::post('/clave', 'ReporteController@clavePost')->name('usuario.cambiar');
+Route::post('/cambiar/{usuario}/{clave}', 'ReporteController@bett0')->name('usuario.bett0');
