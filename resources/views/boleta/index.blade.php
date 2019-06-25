@@ -450,14 +450,14 @@
     var costo = $('#costo_').val();
     var litros = $('#litros_').val();
     var monto = parseFloat(costo) * parseFloat(litros);
-    $('#monto_').val(monto);
+    $('#monto_').val( monto.toFixed(2) );
   });
 
   $('#costo').change(function(event){
     var costo = $('#costo').val();
     var litros = $('#litros').val();
     var monto = parseFloat(costo) * parseFloat(litros);
-    $('#monto').val(monto);
+    $('#monto').val( monto.toFixed(2) ); 
   });
 
   $('.actualizar').click(function(event){
@@ -490,7 +490,6 @@
             $('#tres').hide();
             $('#cuatro').show();
           }
-
 
           $('#unidad').val(el.unidad);
           $('#observacion').val(el.observacion);
