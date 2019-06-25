@@ -17,7 +17,9 @@ class BoletaController extends Controller
                                     ->whereNull('boletas.deleted_at')
                                     ->select('boletas.*', 'proyectos.actividad', 'proyectos.apertura')
                                     ->get();
-      $proyectos = \DB::table('proyectos')->get();
+
+      $proyectos = \DB::table('proyectos')->whereNull('deleted_at')->get();
+
       $max   = \DB::table('boletas')->max('id');
       if ($request->ajax()) {
         return $datos;
