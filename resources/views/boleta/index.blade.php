@@ -6,9 +6,9 @@
 @section('descripcion') De los gastos de los diferentes proyectos @endsection
 
 @section('titulo')
-  <a href="{{asset('index.php')}}" style="color:#fff;"> <i class="fa fa-home"></i> Inicio </a>
+  <a href="{{asset('index.php')}}" style="color:#fff;"> <i class="fa fa-home" accesskey="i"></i> <u>I</u>nicio </a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a  style="color:#fff;" href="#modalAgregar"   data-toggle="modal" class="nuevo" data-target=""> <li class="fa fa-plus"></li> Nuevo Boleta </a>
+  <a  style="color:#fff;" href="#modalAgregar"   data-toggle="modal" class="nuevo" data-target="" accesskey="n"> <li class="fa fa-plus"></li> <u>N</u>uevo Boleta </a>
 @endsection
 
 @section('modal1')

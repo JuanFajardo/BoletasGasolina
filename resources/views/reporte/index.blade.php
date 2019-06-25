@@ -6,7 +6,7 @@
 @section('ventana') Reportes @endsection
 @section('descripcion') en formato HTML y PDF @endsection
 @section('titulo')
-  <a href="{{asset('index.php')}}" style="color:#fff;"> <i class="fa fa-home"></i> Inicio </a>
+  <a href="{{asset('index.php')}}" style="color:#fff;" accesskey="i"></i> <u>I</u>nicio </a>
  @endsection
 
 @section('menuReporte')
@@ -61,13 +61,13 @@
 <br><br>
 <div class="row">
   <div class="col-md-4">
-    <button type="submit" name="btn" value="pdf" class="btn btn-danger"> <i class="fa fa-download"></i> Reporte Generado en PDF</button>
+    <button type="submit" name="btn" value="pdf" class="btn btn-danger" accesskey="f"> <i class="fa fa-download"></i> Reporte Generado en PD<u>F</u></button>
   </div>
   <div class="col-md-4">
-    <button type="submit" name="btn"  value="xls" class="btn btn-success"> <i class="fa fa-download"></i> Reporte Generado en EXCEL</button>
+    <button type="submit" name="btn"  value="xls" class="btn btn-success" accesskey="e"> <i class="fa fa-download"></i> Reporte Generado en <u>E</u>XCEL</button>
   </div>
   <div class="col-md-4">
-    <button type="submit" name="btn"  value="doc" class="btn btn-primary"> <i class="fa fa-file-text"></i> Reporte Generado en HTML</button>
+    <button type="submit" name="btn"  value="doc" class="btn btn-primary" accesskey="h"> <i class="fa fa-file-text"></i> Reporte Generado en <u>H</u>TML</button>
   </div>
 </div>
 {!! Form::close() !!}
